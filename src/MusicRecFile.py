@@ -8,7 +8,7 @@ class MusicRecFile():
 
 		self.data = self._readFile(datafile)
 
-		# Given an artist, find users who listen to artist and track their other top artists
+	# Given an artist, find users who listen to artist and track their other top artists
 	def getSimilarUsers(self, artist):
 
 		topArtists = []
@@ -23,11 +23,11 @@ class MusicRecFile():
 		return topArtists
 
 
-	# The data is organized such that a user's top artists are sequential:
-	# 	userA   coldplay
-	# 	userA   eminem
+	# The data is organized such that a user's top artists and # of plays are sequential:
+	# 	userA   coldplay	230
+	# 	userA   eminem	204
 	#   ...
-	#   userB   britney spears
+	#   userB   britney spears	1454
 
 	# Given the index of a user's top artist, count the user's other top artists
 	def _countArtists(self, user, index, topArtists):
@@ -58,11 +58,11 @@ class MusicRecFile():
 			# Read only up to NUM_LINES of data into memory
 			for i, row in enumerate(rows):
 				
+				print row
 				if i > self.NUM_LINES:
 					break
 
-				# row[0] = user id
-				# row[2] = artist
+				# row[0] = user id, row[2] = artist, row[3] = plays
 				data.append([row[0], row[2], row[3]])
 
 			return data

@@ -41,7 +41,7 @@ class MusicRec():
 			self.counts[name] = [numUsers + 1, playSum + plays]
 
 
-		# sort the counts in descending order
+		# sort in descending order by # of plays -- TODO: look into k nearest neighbors for rec technique
 		# sorting is O(n lg n) -- TODO: can use a quick select to reduce the complexity to O(n) on average
 		sortedCounts = sorted(self.counts.items(), key=lambda count: count[1][1], reverse=True)
 
@@ -50,7 +50,7 @@ class MusicRec():
 
 if __name__ == '__main__':
 
-	m = MusicRec("../usersha1-artmbid-artname-plays.tsv", "file", 1000000)
+	m = MusicRec("../usersha1-artmbid-artname-plays.tsv", "file", 100)
 
 	print "Enter an artist or \"q\" to quit: "
 	artist = raw_input()
